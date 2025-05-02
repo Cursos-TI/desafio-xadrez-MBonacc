@@ -1,32 +1,106 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+void moverRainha(int movRainha) {
+    if (movRainha > 0){
+        printf ("Cima\n");
+        moverRainha (movRainha-1);
+    }
 
+}
+
+void moverBispo (int movBispo) {
+    if (movBispo > 0) {
+        for (int i = 2; i > 0; i--)
+        {
+            printf ("Cima\n");
+            do{
+                printf ("Direita\n");
+                i--;
+            } while (i > 1);
+        }
+        moverBispo (movBispo-1);
+    }
+    
+}
+
+void moverTorre(int movTorre){
+    if (movTorre > 0){
+        printf ("Direta\n");
+        moverTorre (movTorre-1);
+    }
+}
+ 
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
+    int casas, menu;
 
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
+    printf ("MOVA SUA PEÇA DE XADREZ\n");
 
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
+    do {
+        // menu de seleção
+        printf ("\nSelecione a peça que gostaria de mover:\n1 - Rainha\n2 - Bispo\n3 - Torre\n4 - Peao\n5 - Cavalo\n6 - Encerrar o programa\n");
+        scanf ("%d", &menu);
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
+        switch (menu) //switch de escolha da movimentação dentro de um loop
+        {
+        case 1: // Rainha
+        printf ("Escolha a quantidade de casas. No máximo 8. \n");
+        do {
+            scanf ("%d", &casas);
+            if (casas <= 0 || casas >= 9){
+                printf ("Opção Inválida, escolha novamente:\n");
+            }
+        } while (casas <= 0 || casas >= 9);
+            moverRainha(casas);
+            break;
 
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
+        case 2:
+        printf ("Escolha a quantidade de casas. No máximo 8. \n");
+        do {
+            scanf ("%d", &casas);
+            if (casas <= 0 || casas >= 9){
+                printf ("Opção Inválida, escolha novamente:\n");
+            }
+        } while (casas <= 0 || casas >= 9);
+            moverBispo(casas);
+            break;
+        case 3:
+        printf ("Escolha a quantidade de casas. No máximo 8. \n");
+        do {
+            scanf ("%d", &casas);
+            if (casas <= 0 || casas >= 9){
+                printf ("Opção Inválida, escolha novamente:\n");
+            }
+        } while (casas <= 0 || casas >= 9);
+            moverTorre(casas);
+            break;
 
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+        case 4: // movimentação do peão - puro flavor
+            printf ("Cima\n");
+            break;
 
+        case 5: // Cavalo
+            for (int i = 0, cavalo = 6; i < cavalo; i++, cavalo--)
+            {
+                while ( cavalo > 4)
+                {
+                    printf ("Cima\n");
+                    cavalo--;
+                }
+                if (i == 1) continue;
+                if(i > 2) break;
+                printf ("Esquerda\n");
+            }  
+            break;
+        case 6:
+            printf ("Encerrando o programa. . .\n\n");
+            break;
+        default:
+            printf ("Opção inválida, tente novamente.\n\n");
+            break;
+        }
+
+    } while (menu != 6);
+    
     return 0;
 }
