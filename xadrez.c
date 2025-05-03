@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void moverRainha(int movRainha) {
+void moverRainha(int movRainha) { //movimento da rainha
     if (movRainha > 0){
         printf ("Cima\n");
         moverRainha (movRainha-1);
@@ -8,7 +8,7 @@ void moverRainha(int movRainha) {
 
 }
 
-void moverBispo (int movBispo) {
+void moverBispo (int movBispo) { // movimento do bispo, utilizando loops aninhados e recursivo
     if (movBispo > 0) {
         for (int i = 2; i > 0; i--)
         {
@@ -23,7 +23,7 @@ void moverBispo (int movBispo) {
     
 }
 
-void moverTorre(int movTorre){
+void moverTorre(int movTorre){ // movimento da torre
     if (movTorre > 0){
         printf ("Direta\n");
         moverTorre (movTorre-1);
@@ -32,7 +32,7 @@ void moverTorre(int movTorre){
  
 int main() {
 
-    int casas, menu;
+    int casas, menu; // casas decide o número de casas que vai andar, menu é para decisão de qual peça vai mover
 
     printf ("MOVA SUA PEÇA DE XADREZ\n");
 
@@ -45,13 +45,13 @@ int main() {
         {
         case 1: // Rainha
         printf ("Escolha a quantidade de casas. No máximo 8. \n");
-        do {
+        do { // loop para evitar que o usuário ande mais do que o tabuleiro permite, 8 casas
             scanf ("%d", &casas);
             if (casas <= 0 || casas >= 9){
                 printf ("Opção Inválida, escolha novamente:\n");
             }
         } while (casas <= 0 || casas >= 9);
-            moverRainha(casas);
+            moverRainha(casas); // utiliza a recursiva para mover a rainha
             break;
 
         case 2:
@@ -62,7 +62,7 @@ int main() {
                 printf ("Opção Inválida, escolha novamente:\n");
             }
         } while (casas <= 0 || casas >= 9);
-            moverBispo(casas);
+            moverBispo(casas); // chama a recursiva para mover o bispo
             break;
         case 3:
         printf ("Escolha a quantidade de casas. No máximo 8. \n");
@@ -72,7 +72,7 @@ int main() {
                 printf ("Opção Inválida, escolha novamente:\n");
             }
         } while (casas <= 0 || casas >= 9);
-            moverTorre(casas);
+            moverTorre(casas); // torre
             break;
 
         case 4: // movimentação do peão - puro flavor
